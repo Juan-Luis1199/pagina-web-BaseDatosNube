@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        //Your web app´s Firebase configuration 
+        var firebaseConfig = {
+            apiKey: "AIzaSyCgYWU-RhBV2TdOWooIg5BIcAK7hZ98zhk",
+            authDomain: "pagina-web-firebase-d0f89.firebaseapp.com",
+            databaseURL: "https://pagina-web-firebase-d0f89-default-rtdb.firebaseio.com",
+            projectId: "pagina-web-firebase-d0f89",
+            storageBucket: "pagina-web-firebase-d0f89.appspot.com",
+            messagingSenderId: "530473718030",
+            appId: "1:530473718030:web:86d93ef904b5bff0a0c75f",
+            measurementId: "G-8QCKQYM2L6"
+        };
+        //Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var firebaseRef = firebase.database().ref("BD_nube");
+        firebaseRef.on("value", function(snapshot) {
+            snapshot.forEach(function(element) {
+                document.querySelector('#root').innerHTML += `
+                    <div>${element.val()}</div>
+                `
+            });
+        });
+    </script>
+</body>
+
+</html>
